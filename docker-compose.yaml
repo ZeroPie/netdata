@@ -1,9 +1,9 @@
 version: '3'
 services:
   netdata:
-    image: netdata/netdata:latest
+    image: netdata/netdata
     container_name: netdata
-    hostname: netdata-server
+    pid: host
     ports:
       - 19999:19999
     restart: unless-stopped
@@ -13,7 +13,6 @@ services:
     security_opt:
       - apparmor:unconfined
     volumes:
-      - ./netdata/netdata.conf:/etc/netdata/netdata.conf:ro
       - netdataconfig:/etc/netdata
       - netdatalib:/var/lib/netdata
       - netdatacache:/var/cache/netdata
