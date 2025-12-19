@@ -1,10 +1,11 @@
 version: '3'
 services:
   netdata:
-    image: netdata/netdata
+    image: netdata/netdata:latest
     container_name: netdata
-    pid: host
-    network_mode: host
+    hostname: netdata-server
+    ports:
+      - 19999:19999
     restart: unless-stopped
     cap_add:
       - SYS_PTRACE
@@ -12,6 +13,7 @@ services:
     security_opt:
       - apparmor:unconfined
     volumes:
+      - ./netdata/netdata.conf:/etc/netdata/netdata.conf:ro
       - netdataconfig:/etc/netdata
       - netdatalib:/var/lib/netdata
       - netdatacache:/var/cache/netdata
