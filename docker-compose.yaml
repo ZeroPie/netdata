@@ -12,6 +12,8 @@ services:
       - SYS_ADMIN
     security_opt:
       - apparmor:unconfined
+    labels:
+      - 'traefik.http.middlewares.netdata-auth.basicauth.users=tester:$$tester$$y/dpJ77hHG8pgphlHzuvy.S9dB.X3Z7dk8xcTy96mVGb19YmZ5zeu'
     volumes:
       - netdataconfig:/etc/netdata
       - netdatalib:/var/lib/netdata
